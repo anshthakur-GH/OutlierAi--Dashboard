@@ -423,11 +423,59 @@ const notificationsData = [
     { message: "Leaderboard updated", time: "2025-05-04 14:00" },
     { message: "New milestone reached", time: "2025-05-05 08:45" }
 ];
-const notificationsPanel = document.getElementById('notificationsPanel');
-const notificationsList = document.getElementById('notificationsList');
-const openBtn = document.getElementById('openNotificationsBtn');
-const closeBtn = document.getElementById('toggleNotifications');
-const markAllReadBtn = document.getElementById('markAllReadBtn');
+document.addEventListener('DOMContentLoaded', function() {
+    const notificationsPanel = document.getElementById('notificationsPanel');
+    const notificationsList = document.getElementById('notificationsList');
+    const openBtn = document.getElementById('openNotificationsBtn');
+    const closeBtn = document.getElementById('toggleNotifications');
+    const markAllReadBtn = document.getElementById('markAllReadBtn');
+
+    function renderNotifications(data) {
+        notificationsList.innerHTML = '';
+        if (data.length === 0) {
+            const li = document.createElement('li');
+            li.className = 'notification-item';
+            li.textContent = 'No new notifications.';
+            notificationsList.appendChild(li);
+            return;
+        }
+        data.forEach(note => {
+            const li = document.createElement('li');
+            li.className = 'notification-item';
+            li.innerHTML = `
+                <div>${note.message}</div>
+                <span class="notification-time">${note.time}</span>
+            `;
+            notificationsList.appendChild(li);
+        });
+    }
+
+    renderNotifications(notificationsData);
+
+    openBtn.addEventListener('click', () => {
+        notificationsPanel.classList.add('open');
+        openBtn.style.display = 'none'; // Hide bell when sidebar opens
+    });
+
+    closeBtn.addEventListener('click', () => {
+        notificationsPanel.classList.remove('open');
+        openBtn.style.display = 'block'; // Show bell when sidebar closes
+    });
+
+    // Close notifications panel when clicking outside (on overlay/background)
+    document.addEventListener('mousedown', function(event) {
+        if (notificationsPanel.classList.contains('open')) {
+            if (!notificationsPanel.contains(event.target) && event.target !== openBtn) {
+                notificationsPanel.classList.remove('open');
+                openBtn.style.display = 'block';
+            }
+        }
+    });
+
+    markAllReadBtn.addEventListener('click', () => {
+        renderNotifications([]);
+    });
+});
 
 function renderNotifications(data) {
     notificationsList.innerHTML = '';
@@ -504,6 +552,17 @@ document.getElementById('skillTipModal').addEventListener('click', function(e) {
 closeBtn.addEventListener('click', () => {
     notificationsPanel.classList.remove('open');
     openBtn.style.display = 'block'; // Show bell when sidebar closes
+});
+
+// Close notifications panel when clicking outside (on overlay/background)
+document.addEventListener('mousedown', function(event) {
+    if (notificationsPanel.classList.contains('open')) {
+        // Check if click is outside the sidebar and not on the open button
+        if (!notificationsPanel.contains(event.target) && event.target !== openBtn) {
+            notificationsPanel.classList.remove('open');
+            openBtn.style.display = 'block';
+        }
+    }
 });
 markAllReadBtn.addEventListener('click', () => {
     renderNotifications([]);
