@@ -87,7 +87,13 @@ body {
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(26,9,62,0.08);
     transition: background 0.2s;
+    text-decoration: none !important;
 }
+
+.dashboard-link {
+    text-decoration: none !important;
+}
+
 
 .opportunities-btn:hover {
     background: #2d176b;
