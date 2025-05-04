@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Outlier AI</title>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navbar (reused, recommend using an include or copy for now) -->
+    <nav class="navbar" style="margin: 0 auto; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; height: 64px; background: #fff; box-shadow: none; padding: 0 48px;">
+        <div class="navbar-left" style="display: flex; align-items: center; gap: 12px;">
+            <img src="Images/logo.png" alt="Outlier Logo" class="navbar-logo">
+            <span class="brand-name">Outlier</span>
+        </div>
+        <div class="navbar-right" style="display: flex; align-items: center; gap: 18px;">
+            <a href="#" class="nav-link">BLOG</a>
+            <a href="#" class="nav-link">FAQ</a>
+            <a href="dashboard.html" class="nav-link">DASHBOARD</a>
+            <button class="login-btn">LOG IN</button>
+            <button class="opportunities-btn">VIEW OPPORTUNITIES</button>
+        </div>
+    </nav>
+    <main class="dashboard-main">
+
+        <!-- Performance Metrics Cards -->
+        <section class="metrics-cards-section">
+            <div class="metrics-cards-grid">
+                <div class="metrics-card">
+                    <div class="metrics-icon metrics-icon-tasks">📋</div>
+                    <div class="metrics-label">Total Tasks Completed</div>
+                    <div class="metrics-value">150</div>
+                </div>
+                <div class="metrics-card">
+                    <div class="metrics-icon metrics-icon-points">⭐</div>
+                    <div class="metrics-label">Avg. Points per Task</div>
+                    <div class="metrics-value">10</div>
+                </div>
+                <div class="metrics-card">
+                    <div class="metrics-icon metrics-icon-streak">🔥</div>
+                    <div class="metrics-label">Active Streak</div>
+                    <div class="metrics-value">7 days</div>
+                </div>
+                <div class="metrics-card">
+                    <div class="metrics-icon metrics-icon-earnings">💰</div>
+                    <div class="metrics-label">Total Earnings</div>
+                    <div class="metrics-value">$1,250</div>
+                </div>
+            </div>
+        </section>
+        <!-- Task History Timeline -->
+        <section class="timeline-section">
+            <h2>Task History</h2>
+            <div class="timeline" id="taskTimeline">
+                <!-- Timeline items will be populated by JS -->
+            </div>
+        </section>
+        <!-- Notifications Panel -->
+        <aside class="notifications-panel" id="notificationsPanel">
+            <div class="notifications-header">
+                <span>Notifications</span>
+                <button id="toggleNotifications" title="Close">&times;</button>
+            </div>
+            <ul class="notifications-list" id="notificationsList">
+                <!-- JS will populate -->
+            </ul>
+            <button class="mark-read-btn" id="markAllReadBtn">Mark All as Read</button>
+        </aside>
+        <button class="open-notifications-btn" id="openNotificationsBtn" title="Show Notifications">🔔<span class="notification-badge">1</span></button>
+        <div class="dashboard-grid">
+            <!-- Task Progress -->
+            <section class="dashboard-section progress-section">
+                <h2>Task Progress</h2>
+                <!-- Task Details -->
+                <div class="task-details">
+                    <span class="task-number">Task #42</span>
+                    <span class="task-name">Data Annotation Project</span>
+                </div>
+                <!-- Task Summary Card -->
+                <div class="task-summary-card">
+                    <div class="task-summary-item">
+                        <span class="task-summary-icon completed">✔️</span>
+                        <span class="task-summary-label">Completed</span>
+                        <span class="task-summary-value">50</span>
+                    </div>
+                    <div class="task-summary-item">
+                        <span class="task-summary-icon progress">⏳</span>
+                        <span class="task-summary-label">In Progress</span>
+                        <span class="task-summary-value">5</span>
+                    </div>
+                    <div class="task-summary-item">
+                        <span class="task-summary-icon review">🔍</span>
+                        <span class="task-summary-label">Pending Review</span>
+                        <span class="task-summary-value">3</span>
+                    </div>
+                </div>
+                <!-- Task Progress Bar (styled like milestone) -->
+                <div class="task-progress-bar-card">
+                    <div class="task-progress-bar-label">Task Completion</div>
+                    <div class="milestone-progress-bar-bg">
+                        <div class="milestone-progress-bar-fill" style="width: 75%"></div>
+                    </div>
+                    <span class="milestone-progress-label">75% Completed</span>
+                </div>
+                <!-- Motivational Milestone Tracker -->
+                <div class="milestone-tracker">
+                    <div class="milestone-info">
+                        <span class="milestone-label">Next Milestone:</span>
+                        <span class="milestone-main">60 Tasks</span>
+                        <span class="milestone-reward">(Bonus 100 Points)</span>
+                    </div>
+                    <div class="milestone-progress-bar-bg">
+                        <div class="milestone-progress-bar-fill" style="width: 83.3%"></div>
+                    </div>
+                    <span class="milestone-progress-label">10 Tasks Remaining</span>
+                </div>
+                <!-- Quick Action Buttons -->
+                <div class="quick-action-btns">
+                    <button class="quick-action-btn" id="viewCurrentTaskBtn">View Current Task</button>
+                    <button class="quick-action-btn" id="startNextTaskBtn">Start Next Task</button>
+                </div>
+
+            </section>
+            <!-- Earnings Chart -->
+            <section class="dashboard-section earnings-section">
+                <h2>Earnings (Last 7 Days)</h2>
+                <canvas id="earningsChart" width="400" height="200"></canvas>
+            </section>
+            <!-- Leaderboard -->
+            <section class="dashboard-section leaderboard-section">
+                <h2>Leaderboard</h2>
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Tasks Completed</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <!-- JS will populate -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+</body>
+</html>
