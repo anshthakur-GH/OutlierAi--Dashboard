@@ -131,6 +131,7 @@ body {
 }
 
 /* --- Task Progress Dashboard Enhancements --- */
+
 .task-details {
     display: flex;
     gap: 18px;
@@ -140,6 +141,7 @@ body {
     font-weight: 600;
     color: #1a093e;
 }
+
 .task-number {
     background: #f1eefa;
     border-radius: 8px;
@@ -148,6 +150,7 @@ body {
     font-weight: 700;
     color: #6c47c7;
 }
+
 .task-name {
     font-size: 1.08rem;
     font-weight: 600;
@@ -161,24 +164,27 @@ body {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 1px 6px rgba(26,9,62,0.04);
-    padding: 13px 18px;
+    padding: 16px 67px;
+    gap: 32px;
     font-size: 1rem;
     margin-bottom: 24px;
     min-height: 48px;
 }
+
 .skill-improvement-row span {
-    flex: none;
-    margin-right: 0;
-    margin-bottom: 8px;
-    text-align: center;
-    width: 100%;
+    flex: 1;
+    text-align: left;
 }
-.skill-improvement-row .skill-improve-btn {
-    margin-left: 0;
-    margin-top: 14px;
-    align-self: center;
+
+.skill-improvement-row .purple-button.see-tips-btn {
+    margin-left: 24px;
     flex-shrink: 0;
-    min-width: 120px;
+}
+
+.skill-improvement-row span {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
 }
 
 .skill-breakdown-row {
@@ -192,18 +198,22 @@ body {
     margin-bottom: 18px;
     line-height: 1.8;
 }
+
 .skill-breakdown-row > span {
     margin-right: 12px;
 }
+
 .skill-breakdown-row .skill-improvement-list {
     display: flex;
     flex-direction: column;
     gap: 32px;
     margin-top: 28px;
-} 
+}
+
 .skill-breakdown-row .skill-improve-btn {
     margin-left: auto;
 }
+
 .skill-breakdown-row:last-child {
     margin-bottom: 0;
 }
@@ -219,29 +229,36 @@ body {
     align-items: center;
     justify-content: flex-start;
 }
+
 .task-summary-item {
     display: flex;
     align-items: center;
     gap: 7px;
     min-width: 0;
 }
+
 .task-summary-icon {
     font-size: 1.23rem;
 }
+
 .task-summary-icon.completed {
     color: #2ecc40;
 }
+
 .task-summary-icon.progress {
     color: #f39c12;
 }
+
 .task-summary-icon.review {
     color: #6c47c7;
 }
+
 .task-summary-label {
     color: #7d6e9c;
     font-size: 0.98rem;
     font-weight: 500;
 }
+
 .task-summary-value {
     font-size: 1.09rem;
     font-weight: 700;
@@ -255,6 +272,7 @@ body {
     margin-bottom: 18px;
     padding: 12px 16px 10px 16px;
 }
+
 .recent-task-log-header {
     display: flex;
     align-items: center;
@@ -263,6 +281,7 @@ body {
     color: #231b2e;
     margin-bottom: 5px;
 }
+
 .toggle-task-log-btn {
     background: none;
     border: none;
@@ -272,6 +291,7 @@ body {
     cursor: pointer;
     padding: 0 2px;
 }
+
 .recent-task-log-list {
     list-style: none;
     margin: 0;
@@ -280,10 +300,12 @@ body {
     overflow: hidden;
     transition: max-height 0.3s;
 }
+
 .recent-task-log-list.expanded {
     max-height: 400px;
     overflow: auto;
 }
+
 .recent-task-log-item {
     display: flex;
     align-items: center;
@@ -295,17 +317,20 @@ body {
     padding: 6px 12px;
     box-shadow: 0 1px 2px rgba(26,9,62,0.03);
 }
+
 .recent-task-log-task {
     flex: 2;
     color: #1a093e;
     font-weight: 600;
 }
+
 .recent-task-log-date {
     flex: 1.2;
     color: #7d6e9c;
     text-align: center;
     font-size: 0.97rem;
 }
+
 .recent-task-log-points {
     flex: 1;
     color: #2ecc40;
@@ -336,17 +361,21 @@ body {
     font-weight: 600;
     color: #231b2e;
 }
+
 .milestone-label {
     color: #6c47c7;
 }
+
 .milestone-main {
     color: #1a093e;
     font-weight: 700;
 }
+
 .milestone-reward {
     color: #2ecc40;
     font-size: 0.97rem;
 }
+
 .milestone-progress-bar-bg {
     width: 100%;
     background: #f1eefa;
@@ -355,12 +384,14 @@ body {
     margin: 7px 0 2px 0;
     overflow: hidden;
 }
+
 .milestone-progress-bar-fill {
     background: linear-gradient(90deg, #6c47c7 0%, #5d3fd3 100%);
     height: 100%;
     border-radius: 8px 0 0 8px;
     transition: width 0.5s;
 }
+
 .milestone-progress-label {
     color: #7d6e9c;
     font-size: 0.97rem;
@@ -373,6 +404,7 @@ body {
     gap: 16px;
     margin-bottom: 12px;
 }
+
 .quick-action-group {
     display: flex;
     flex-direction: column;
@@ -380,6 +412,7 @@ body {
     position: relative;
     margin-right: 12px;
 }
+
 .task-collapsible-panel {
     display: none;
     background: #faf8fd;
@@ -393,16 +426,18 @@ body {
     color: #1a093e;
     animation: panelFadeIn 0.25s;
 }
+
 @keyframes panelFadeIn {
     from { opacity: 0; transform: translateY(-8px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
 .task-panel-content {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-}
+
 .quick-action-btn {
     background: #6c47c7;
     color: #fff;
@@ -415,10 +450,10 @@ body {
     box-shadow: 0 1px 4px rgba(26,9,62,0.07);
     transition: background 0.18s;
 }
+
 .quick-action-btn:hover {
     background: #5d3fd3;
 }
-
 
 .earnings-section {
     grid-column: 2 / 3;
@@ -426,14 +461,16 @@ body {
     min-height: 420px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
+    align-items: flex-start;
+    justify-content: flex-start;
 }
+
 .earnings-section h2 {
     font-size: 24px;
     margin-bottom: 28px;
     text-align: left;
 }
+
 #earningsChart {
     max-width: 100%;
     height: auto;
@@ -449,6 +486,7 @@ body {
 .progress-bar-container {
     margin: 18px 0 0 0;
 }
+
 .progress-bar-bg {
     width: 100%;
     background: #f1eefa;
@@ -457,12 +495,14 @@ body {
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(26,9,62,0.04);
 }
+
 .progress-bar-fill {
     background: linear-gradient(90deg, #6c47c7 0%, #5d3fd3 100%);
     height: 100%;
     border-radius: 12px 0 0 12px;
     transition: width 0.5s;
 }
+
 .progress-label {
     margin-top: 10px;
     display: block;
@@ -478,6 +518,7 @@ body {
     align-items: center;
     margin-bottom: 10px;
 }
+
 .leaderboard-search {
     flex: 1 1 220px;
     padding: 10px 14px;
@@ -487,6 +528,7 @@ body {
     background: #faf8fd;
     color: #1a093e;
 }
+
 .leaderboard-filter {
     padding: 10px 14px;
     border: 1px solid #cfc5f7;
@@ -495,6 +537,7 @@ body {
     background: #faf8fd;
     color: #1a093e;
 }
+
 .purple-button {
     background: linear-gradient(90deg, #6c47c7 0%, #5d3fd3 100%);
     color: #fff;
@@ -507,10 +550,12 @@ body {
     transition: background 0.2s;
     box-shadow: 0 2px 8px rgba(26,9,62,0.04);
 }
+
 .purple-button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
 .leaderboard-table {
     width: 100%;
     border-collapse: collapse;
@@ -520,11 +565,13 @@ body {
     box-shadow: 0 2px 8px rgba(26,9,62,0.04);
     overflow: hidden;
 }
+
 .sort-arrow {
     font-size: 1.1em;
     margin-left: 4px;
     color: #6c47c7;
 }
+
 .leaderboard-pagination {
     display: flex;
     align-items: center;
@@ -532,11 +579,13 @@ body {
     margin-top: 12px;
     justify-content: flex-end;
 }
+
 .current-user-row {
     background: linear-gradient(90deg, #f7e9ff 0%, #e8e1ff 100%) !important;
     font-weight: 700;
     position: relative;
 }
+
 .leaderboard-tooltip {
     position: absolute;
     z-index: 9999;
@@ -550,6 +599,7 @@ body {
     pointer-events: none;
     opacity: 0.97;
 }
+
 @media (max-width: 700px) {
     .leaderboard-controls, .leaderboard-pagination {
         flex-direction: column;
@@ -561,6 +611,7 @@ body {
         font-size: 0.98rem;
     }
 }
+
 .leaderboard-table th, .leaderboard-table td {
     padding: 14px 20px;
     text-align: left;
@@ -569,17 +620,21 @@ body {
     position: relative;
     user-select: none;
 }
+
 .leaderboard-table th {
     background: #f1eefa;
     font-weight: 700;
     letter-spacing: 0.02em;
 }
+
 .leaderboard-table tr:nth-child(even) {
     background: #faf8fd;
 }
+
 .leaderboard-table tr {
     transition: background 0.15s;
 }
+
 .leaderboard-table tr:hover {
     background: #f7f0ff;
     cursor: pointer;
@@ -588,7 +643,6 @@ body {
 .dashboard-section h2 {
     text-align: center;
     width: 100%;
-}
     font-size: 1.45rem;
     font-weight: 700;
     color: #1a093e;
@@ -597,15 +651,18 @@ body {
 }
 
 /* --- Metrics Cards --- */
+
 .metrics-cards-section {
     margin-bottom: 36px;
     width: 100%;
 }
+
 .metrics-cards-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 28px;
 }
+
 .metrics-card {
     background: #fff;
     border-radius: 20px;
@@ -616,22 +673,27 @@ body {
     align-items: flex-start;
     min-width: 0;
 }
+
 .metrics-icon {
     font-size: 2.1rem;
     margin-bottom: 12px;
 }
+
 .metrics-label {
     font-size: 1.05rem;
     color: #7d6e9c;
     font-weight: 600;
     margin-bottom: 2px;
 }
+
 .metrics-value {
     font-size: 1.45rem;
     font-weight: 700;
     color: #1a093e;
 }
+
 /* --- Task Modal Popup --- */
+
 #taskModal, #skillTipModal {
     display: none;
     position: fixed;
@@ -644,6 +706,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .task-modal-content, #skillTipModal .task-modal-content {
     background: #fff;
     border-radius: 16px;

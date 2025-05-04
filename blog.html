@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog | Outlier AI</title>
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        body {
+            background: #fff;
+            color: #1a093e;
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .blog-header {
+            background: linear-gradient(90deg, #fff 60%, #f7f0ff 100%);
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        
+        .blog-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a093e;
+        }
+        
+        .blog-subtitle {
+            font-size: 1.2rem;
+            color: #3d2a6d;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 40px;
+        }
+        
+        .blog-main {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .blog-featured {
+            background: #faf8fd;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(26,9,62,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .blog-featured:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(26,9,62,0.08);
+        }
+        
+        .blog-featured-image {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+        }
+        
+        .blog-featured-content {
+            padding: 30px;
+        }
+        
+        .blog-category {
+            display: inline-block;
+            background: #f1eefa;
+            color: #6c47c7;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .blog-featured-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            color: #1a093e;
+        }
+        
+        .blog-excerpt {
+            color: #3d2a6d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .blog-author-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .blog-author-name {
+            font-weight: 600;
+            color: #1a093e;
+        }
+        
+        .blog-date {
+            color: #7d6e9c;
+            font-size: 0.9rem;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(26,9,62,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(26,9,62,0.08);
+        }
+        
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-card-content {
+            padding: 20px;
+        }
+        
+        .blog-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: #1a093e;
+        }
+        
+        .blog-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .sidebar-section {
+            background: #faf8fd;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 2px 12px rgba(26,9,62,0.04);
+        }
+        
+        .sidebar-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            color: #1a093e;
+        }
+        
+        .search-form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e8e4f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        
+        .search-input:focus {
+            border-color: #6c47c7;
+            outline: none;
+        }
+        
+        .search-button {
+            background: #6c47c7;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 0 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .search-button:hover {
+            background: #5d3fd3;
+        }
+        
+        .categories-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .categories-list li {
+            margin-bottom: 12px;
+        }
+        
+        .categories-list a {
+            display: flex;
+            justify-content: space-between;
+            color: #3d2a6d;
+            text-decoration: none;
+            padding: 8px 0;
+            transition: color 0.2s;
+        }
+        
+        .categories-list a:hover {
+            color: #6c47c7;
+        }
+        
+        .category-count {
+            background: #f1eefa;
+            color: #6c47c7;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 12px;
+        }
+        
+        .popular-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .popular-post {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .popular-post-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        
+        .popular-post-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .popular-post-title {
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            color: #1a093e;
+        }
+        
+        .popular-post-date {
+            color: #7d6e9c;
+            font-size: 0.85rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .newsletter-input {
+            padding: 12px 16px;
+            border: 2px solid #e8e4f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        
+        .newsletter-input:focus {
+            border-color: #6c47c7;
+            outline: none;
+        }
+        
+        .newsletter-button {
+            background: linear-gradient(90deg, #6c47c7 0%, #5d3fd3 100%);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .newsletter-button:hover {
+            background: linear-gradient(90deg, #5d3fd3 0%, #4c32b8 100%);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 60px;
+        }
+        
+        .pagination-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #fff;
+            color: #3d2a6d;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(26,9,62,0.04);
+        }
+        
+        .pagination-item:hover, .pagination-item.active {
+            background: #6c47c7;
+            color: #fff;
+        }
+        
+        @media (max-width: 900px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar (reused from other pages) -->
+    <nav class="navbar" style="margin: 0 auto; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; height: 64px; background: #fff; box-shadow: none; padding: 0 48px;">
+        <div class="navbar-left" style="display: flex; align-items: center; gap: 12px;">
+            <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;">
+                <img src="Images/logo.png" alt="Outlier Logo" class="navbar-logo">
+                <span class="brand-name">Outlier</span>
+            </a>
+        </div>
+        <div class="navbar-right" style="display: flex; align-items: center; gap: 18px;">
+            <a href="blog.html" class="nav-link">BLOG</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="dashboard.html" class="opportunities-btn">DASHBOARD</a>
+            <a href="login.html" class="login-btn">LOG IN</a>
+            <button class="opportunities-btn">VIEW OPPORTUNITIES</button>
+        </div>
+    </nav>
+    
+    <div class="blog-header">
+        <h1 class="blog-title">Outlier AI Blog</h1>
+        <p class="blog-subtitle">Insights, updates, and stories from our community of experts shaping the future of AI.</p>
+    </div>
+    
+    <div class="blog-container">
+        <div class="blog-main">
+            <article class="blog-featured">
+                <img src="https://images.unsplash.com/photo-1591453089816-0fbb971b454c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="AI Ethics" class="blog-featured-image">
+                <div class="blog-featured-content">
+                    <span class="blog-category">AI Ethics</span>
+                    <h2 class="blog-featured-title">The Role of Human Expertise in Responsible AI Development</h2>
+                    <p class="blog-excerpt">As AI systems become more integrated into our daily lives, the importance of human oversight and expertise in their development has never been more critical. This article explores how human annotators and domain experts are essential to creating AI that is accurate, fair, and beneficial for all.</p>
+                    <div class="blog-meta">
+                        <div class="blog-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author" class="blog-author-image">
+                            <span class="blog-author-name">Dr. Sarah Chen</span>
+                        </div>
+                        <span class="blog-date">May 2, 2025</span>
+                    </div>
+                </div>
+            </article>
+            
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80" alt="Data Annotation" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-category">Data Annotation</span>
+                        <h3 class="blog-card-title">Best Practices for High-Quality Data Annotation</h3>
+                        <p class="blog-excerpt">Learn the techniques and approaches that top annotators use to ensure their work is accurate and valuable for AI training.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author" class="blog-author-image">
+                                <span class="blog-author-name">Michael Torres</span>
+                            </div>
+                            <span class="blog-date">April 28, 2025</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Remote Work" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-category">Remote Work</span>
+                        <h3 class="blog-card-title">How to Thrive as a Remote AI Contributor</h3>
+                        <p class="blog-excerpt">Strategies for maintaining productivity, work-life balance, and career growth while working remotely in the AI field.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Author" class="blog-author-image">
+                                <span class="blog-author-name">Priya Sharma</span>
+                            </div>
+                            <span class="blog-date">April 25, 2025</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1581092921461-7d25c8e28c32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="AI Applications" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-category">AI Applications</span>
+                        <h3 class="blog-card-title">AI in Healthcare: How Human Experts Are Making a Difference</h3>
+                        <p class="blog-excerpt">Exploring the critical role of medical professionals in training AI systems that can assist with diagnostics and patient care.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Author" class="blog-author-image">
+                                <span class="blog-author-name">Dr. James Wilson</span>
+                            </div>
+                            <span class="blog-date">April 20, 2025</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80" alt="Career Growth" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-category">Career Growth</span>
+                        <h3 class="blog-card-title">From Annotator to AI Specialist: Career Paths in AI</h3>
+                        <p class="blog-excerpt">How starting as a data annotator can lead to exciting career opportunities in artificial intelligence and machine learning.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Author" class="blog-author-image">
+                                <span class="blog-author-name">Elena Rodriguez</span>
+                            </div>
+                            <span class="blog-date">April 15, 2025</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="pagination">
+                <div class="pagination-item active">1</div>
+                <div class="pagination-item">2</div>
+                <div class="pagination-item">3</div>
+                <div class="pagination-item">4</div>
+                <div class="pagination-item">→</div>
+            </div>
+        </div>
+        
+        <aside class="blog-sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Search</h3>
+                <form class="search-form">
+                    <input type="text" placeholder="Search articles..." class="search-input">
+                    <button type="submit" class="search-button">🔍</button>
+                </form>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Categories</h3>
+                <ul class="categories-list">
+                    <li><a href="#">AI Ethics <span class="category-count">12</span></a></li>
+                    <li><a href="#">Data Annotation <span class="category-count">24</span></a></li>
+                    <li><a href="#">Remote Work <span class="category-count">18</span></a></li>
+                    <li><a href="#">AI Applications <span class="category-count">31</span></a></li>
+                    <li><a href="#">Career Growth <span class="category-count">15</span></a></li>
+                    <li><a href="#">Community Stories <span class="category-count">9</span></a></li>
+                    <li><a href="#">Industry Insights <span class="category-count">22</span></a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Popular Posts</h3>
+                <div class="popular-posts">
+                    <div class="popular-post">
+                        <img src="https://images.unsplash.com/photo-1591453089816-0fbb971b454c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Popular Post" class="popular-post-image">
+                        <div class="popular-post-content">
+                            <h4 class="popular-post-title">The Future of AI Governance</h4>
+                            <span class="popular-post-date">April 10, 2025</span>
+                        </div>
+                    </div>
+                    <div class="popular-post">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80" alt="Popular Post" class="popular-post-image">
+                        <div class="popular-post-content">
+                            <h4 class="popular-post-title">5 Tools Every Data Annotator Needs</h4>
+                            <span class="popular-post-date">April 5, 2025</span>
+                        </div>
+                    </div>
+                    <div class="popular-post">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Popular Post" class="popular-post-image">
+                        <div class="popular-post-content">
+                            <h4 class="popular-post-title">Setting Up Your Home Office for Success</h4>
+                            <span class="popular-post-date">March 28, 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Newsletter</h3>
+                <p>Stay updated with our latest articles and news.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>

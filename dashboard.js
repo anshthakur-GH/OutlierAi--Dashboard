@@ -57,6 +57,45 @@ const leaderboardData = [
     {username: "EthanSharma", tasks: 15, points: 150, rank: 10, lastActive: "2025-05-02"}
 ];
 
+// --- Skill Tips Modal Logic ---
+const skillTips = {
+    'Data Annotation': 'Double-check guidelines and annotate consistently for better accuracy.',
+    'Image Labeling': 'Zoom in for details and use reference images to improve labeling precision.',
+    'Text Review': 'Read twice and use spellcheck tools to catch errors.',
+    'Survey Analysis': 'Look for patterns in data and validate responses for outliers.',
+    'Quality Check': 'Cross-verify with peers and use checklists for thorough reviews.'
+};
+
+function openSkillTipModal(skill) {
+    const modal = document.getElementById('skillTipModal');
+    document.getElementById('skillTipModalTitle').innerText = `Skill Improvement Tip: ${skill}`;
+    document.getElementById('skillTipText').innerText = skillTips[skill] || 'This is a dummy tip for improving your skill.';
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeSkillTipModal() {
+    const modal = document.getElementById('skillTipModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.see-tips-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const skill = this.getAttribute('data-skill');
+            openSkillTipModal(skill);
+        });
+    });
+    document.getElementById('closeSkillTipModal').addEventListener('click', closeSkillTipModal);
+    document.getElementById('skillTipModal').addEventListener('click', function(e) {
+        if (e.target === this) closeSkillTipModal();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeSkillTipModal();
+    });
+});
+
 // --- Skill Insights Panel Logic ---
 const skillData = [
     { skill: "Data Annotation", score: 85, tasks: 20, points: 200, tip: "To improve Data Annotation, try faster task completion." },
@@ -111,48 +150,9 @@ function renderSkillRadarChart() {
     });
 }
 
-// Attach event listeners for Improve Skill buttons in HTML
-function attachSkillImproveBtnListeners() {
-    document.querySelectorAll('.skill-improve-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const idx = btn.getAttribute('data-skill-idx');
-            if (skillData[idx]) {
-                openSkillTipModal(skillData[idx].skill, skillData[idx].tip);
-            }
-        });
-    });
-}
-
-// Modal logic for skill tips
-function openSkillTipModal(skill, tip) {
-    const modal = document.getElementById('skillTipModal');
-    const title = document.getElementById('skillTipModalTitle');
-    const details = document.getElementById('skillTipModalDetails');
-    title.textContent = `How to Improve: ${skill}`;
-    details.textContent = tip;
-    modal.classList.add('open');
-}
-
-const closeSkillTipModalBtn = document.getElementById('closeSkillTipModal');
-if (closeSkillTipModalBtn) {
-    closeSkillTipModalBtn.onclick = function() {
-        document.getElementById('skillTipModal').classList.remove('open');
-    };
-}
-
 window.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('skillRadarChart')) {
         renderSkillRadarChart();
-        attachSkillImproveBtnListeners();
-        // Modal close on background click
-        const modal = document.getElementById('skillTipModal');
-        if (modal) {
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.classList.remove('open');
-                }
-            });
-        }
     }
 });
 
@@ -512,42 +512,9 @@ function openSkillTipModal(skill, tip) {
     document.body.style.overflow = 'hidden';
 }
 // Close modal when clicking the close button or background
-// Modal close logic for skill tip modal
-window.addEventListener('DOMContentLoaded', function() {
-    var closeSkillTipModalBtn = document.getElementById('closeSkillTipModal');
-    var skillTipModal = document.getElementById('skillTipModal');
-    if (closeSkillTipModalBtn && skillTipModal) {
-        closeSkillTipModalBtn.addEventListener('click', function() {
-            skillTipModal.style.display = 'none';
-            document.body.style.overflow = '';
-        });
-        skillTipModal.addEventListener('click', function(e) {
-            if (e.target === skillTipModal) {
-                skillTipModal.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-        });
-    }
-});
 
-function closeSkillTipModal() {
-    const modal = document.getElementById('skillTipModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-}
 
-document.querySelectorAll('.skill-improve-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const skill = btn.getAttribute('data-skill');
-        const tip = btn.getAttribute('data-tip');
-        openSkillTipModal(skill, tip);
-    });
-});
 
-document.getElementById('closeSkillTipModal').addEventListener('click', closeSkillTipModal);
-document.getElementById('skillTipModal').addEventListener('click', function(e) {
-    if (e.target === this) closeSkillTipModal();
-});
 
 closeBtn.addEventListener('click', () => {
     notificationsPanel.classList.remove('open');

@@ -17,10 +17,10 @@
             </a>
         </div>
         <div class="navbar-right" style="display: flex; align-items: center; gap: 18px;">
-            <a href="#" class="nav-link">BLOG</a>
-            <a href="#" class="nav-link">FAQ</a>
+            <a href="blog.html" class="nav-link">BLOG</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
             <a href="dashboard.html" class="opportunities-btn dashboard-link">DASHBOARD</a>
-            <button class="login-btn">LOG IN</button>
+            <a href="login.html" class="login-btn">LOG IN</a>
             <button class="opportunities-btn">VIEW OPPORTUNITIES</button>
         </div>
     </nav>
@@ -134,25 +134,34 @@
     <h2>Skill Improvement Tips</h2>
     <div class="skill-improvement-list">
         <div class="skill-improvement-row">
-            <span>Data Annotation</span>
-            <button class="skill-improve-btn purple-button" data-skill="Data Annotation" data-tip="To improve Data Annotation, try faster task completion and double-check for accuracy.">See Tips</button>
-        </div>
-        <div class="skill-improvement-row">
-            <span>Image Labeling</span>
-            <button class="skill-improve-btn purple-button" data-skill="Image Labeling" data-tip="For Image Labeling, focus on consistent use of labels and attention to detail.">See Tips</button>
-        </div>
-        <div class="skill-improvement-row">
-            <span>Text Review</span>
-            <button class="skill-improve-btn purple-button" data-skill="Text Review" data-tip="To improve Text Review, read carefully and use spell check tools.">See Tips</button>
-        </div>
-        <div class="skill-improvement-row">
-            <span>Survey Analysis</span>
-            <button class="skill-improve-btn purple-button" data-skill="Survey Analysis" data-tip="For Survey Analysis, look for patterns and summarize findings clearly.">See Tips</button>
-        </div>
-        <div class="skill-improvement-row">
-            <span>Quality Check</span>
-            <button class="skill-improve-btn purple-button" data-skill="Quality Check" data-tip="To improve Quality Check, review tasks thoroughly before submitting.">See Tips</button>
-        </div>
+    <span>Data Annotation</span>
+    <button class="purple-button see-tips-btn" data-skill="Data Annotation">See Tips</button>
+</div>
+<div class="skill-improvement-row">
+    <span>Image Labeling</span>
+    <button class="purple-button see-tips-btn" data-skill="Image Labeling">See Tips</button>
+</div>
+<div class="skill-improvement-row">
+    <span>Text Review</span>
+    <button class="purple-button see-tips-btn" data-skill="Text Review">See Tips</button>
+</div>
+<div class="skill-improvement-row">
+    <span>Survey Analysis</span>
+    <button class="purple-button see-tips-btn" data-skill="Survey Analysis">See Tips</button>
+</div>
+<div class="skill-improvement-row">
+    <span>Quality Check</span>
+    <button class="purple-button see-tips-btn" data-skill="Quality Check">See Tips</button>
+</div>
+
+<!-- Skill Tip Modal -->
+<div id="skillTipModal" class="task-modal" style="display:none;">
+    <div class="task-modal-content">
+        <span class="task-modal-close" id="closeSkillTipModal">&times;</span>
+        <h3 id="skillTipModalTitle">Skill Improvement Tip</h3>
+        <div id="skillTipText">This is a dummy tip for improving your skill.</div>
+    </div>
+</div>
         
     </div>
 </section>
@@ -208,15 +217,6 @@
 <script src="dashboard.js"></script>
 
 
-<!-- Skill Tip Modal (Task-style) -->
-<div id="skillTipModal" class="task-modal" style="display:none;">
-    <div class="task-modal-content">
-        <button class="task-modal-close" id="closeSkillTipModal">&times;</button>
-        <h3 id="skillTipModalTitle">Skill Improvement Tip</h3>
-        <div class="task-modal-details" id="skillTipModalDetails">
-            <div><strong>Tip:</strong> <span id="skillTipText">This is a dummy tip for improving your skill. Practice regularly and review guidelines!</span></div>
-        </div>
-    </div>
-</div>
+
 </body>
 </html>
