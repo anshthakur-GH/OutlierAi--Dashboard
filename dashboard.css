@@ -473,15 +473,25 @@ body {
 }
 .timeline-dot {
     position: absolute;
-    left: -29px; /* Move dot closer to content, away from line */
-    top: 6px;
-    width: 18px;
-    height: 18px;
-    background: #fff;
-    border: 3px solid #6c47c7;
-    border-radius: 50%;
-    z-index: 2; /* Ensure dot is above the line */
-    box-shadow: 0 0 0 4px #faf8fd; /* Add subtle background to separate from line */
+    left: -18px;
+    top: 11px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #6c47c7;
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
+    border-radius: 0;
+    z-index: 2;
+    box-shadow: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    /* Unicode bullet • */
+    content: none;
 }
 .timeline-content {
     background: #faf8fd;
