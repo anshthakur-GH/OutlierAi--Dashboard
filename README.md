@@ -5,11 +5,17 @@ Frontend clone of Outlier AI's homepage with a custom Dashboard for the Level Up
 ⚡𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀 -> 
 
 🔴 Performance Metrics Cards: Shows Total Tasks Completed, Avg. Points per Task, Active Streak, Total Earnings.
+
 🔴 Task History Timeline: Scrollable list of completed tasks with name, date, and points.
+
 🔴 Task Progress Section: Progress bar, task details, and buttons for "View Current Task" and "Start Next Task".
+
 🔴 Earnings Chart: Interactive chart of earnings with timeframe toggles.
+
 🔴 Skill Improvement Tips: Actionable tips for enhancing task skills.
+
 🔴 Task Skill Insights: Radar chart and task breakdown by skill category.
+
 🔴 Leaderboard: Sortable table of top performers with search and filters.
 
 
