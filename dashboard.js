@@ -57,6 +57,105 @@ const leaderboardData = [
     {username: "EthanSharma", tasks: 15, points: 150, rank: 10, lastActive: "2025-05-02"}
 ];
 
+// --- Skill Insights Panel Logic ---
+const skillData = [
+    { skill: "Data Annotation", score: 85, tasks: 20, points: 200, tip: "To improve Data Annotation, try faster task completion." },
+    { skill: "Image Labeling", score: 70, tasks: 16, points: 160, tip: "For Image Labeling, review guidelines for accuracy." },
+    { skill: "Text Review", score: 90, tasks: 23, points: 230, tip: "To improve Text Review, focus on consistency." },
+    { skill: "Survey Analysis", score: 65, tasks: 12, points: 120, tip: "For Survey Analysis, double-check your summaries." },
+    { skill: "Quality Check", score: 80, tasks: 18, points: 180, tip: "For Quality Check, pay attention to detail." }
+];
+
+function renderSkillRadarChart() {
+    const ctx = document.getElementById('skillRadarChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: skillData.map(s => s.skill),
+            datasets: [{
+                label: 'Proficiency',
+                data: skillData.map(s => s.score),
+                backgroundColor: 'rgba(93, 63, 211, 0.18)',
+                borderColor: 'rgba(93, 63, 211, 0.95)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(93, 63, 211, 1)',
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                r: {
+                    angleLines: { color: '#ece7fa' },
+                    grid: { color: '#ece7fa' },
+                    pointLabels: {
+                        color: '#1a093e',
+                        font: { size: 13, weight: 'bold', family: 'Inter, Arial, sans-serif' },
+                        padding: 6
+                    },
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        color: '#1a093e',
+                        font: { size: 11, weight: 'bold', family: 'Inter, Arial, sans-serif' },
+                        stepSize: 20,
+                        backdropColor: 'rgba(255,255,255,0.95)',
+                        z: 10
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Attach event listeners for Improve Skill buttons in HTML
+function attachSkillImproveBtnListeners() {
+    document.querySelectorAll('.skill-improve-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const idx = btn.getAttribute('data-skill-idx');
+            if (skillData[idx]) {
+                openSkillTipModal(skillData[idx].skill, skillData[idx].tip);
+            }
+        });
+    });
+}
+
+// Modal logic for skill tips
+function openSkillTipModal(skill, tip) {
+    const modal = document.getElementById('skillTipModal');
+    const title = document.getElementById('skillTipModalTitle');
+    const details = document.getElementById('skillTipModalDetails');
+    title.textContent = `How to Improve: ${skill}`;
+    details.textContent = tip;
+    modal.classList.add('open');
+}
+
+const closeSkillTipModalBtn = document.getElementById('closeSkillTipModal');
+if (closeSkillTipModalBtn) {
+    closeSkillTipModalBtn.onclick = function() {
+        document.getElementById('skillTipModal').classList.remove('open');
+    };
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('skillRadarChart')) {
+        renderSkillRadarChart();
+        attachSkillImproveBtnListeners();
+        // Modal close on background click
+        const modal = document.getElementById('skillTipModal');
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('open');
+                }
+            });
+        }
+    }
+});
+
 // --- Leaderboard Advanced Logic ---
 (function(){
 const PAGE_SIZE = 5;
@@ -355,6 +454,53 @@ openBtn.addEventListener('click', () => {
     notificationsPanel.classList.add('open');
     openBtn.style.display = 'none'; // Hide bell when sidebar opens
 });
+
+// --- Skill Improvement Modal Logic ---
+function openSkillTipModal(skill, tip) {
+    const modal = document.getElementById('skillTipModal');
+    document.getElementById('skillTipModalTitle').innerText = `Skill Improvement Tip: ${skill}`;
+    document.getElementById('skillTipText').innerText = tip || 'This is a dummy tip for improving your skill. Practice regularly and review guidelines!';
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+// Close modal when clicking the close button or background
+// Modal close logic for skill tip modal
+window.addEventListener('DOMContentLoaded', function() {
+    var closeSkillTipModalBtn = document.getElementById('closeSkillTipModal');
+    var skillTipModal = document.getElementById('skillTipModal');
+    if (closeSkillTipModalBtn && skillTipModal) {
+        closeSkillTipModalBtn.addEventListener('click', function() {
+            skillTipModal.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+        skillTipModal.addEventListener('click', function(e) {
+            if (e.target === skillTipModal) {
+                skillTipModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    }
+});
+
+function closeSkillTipModal() {
+    const modal = document.getElementById('skillTipModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.skill-improve-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const skill = btn.getAttribute('data-skill');
+        const tip = btn.getAttribute('data-tip');
+        openSkillTipModal(skill, tip);
+    });
+});
+
+document.getElementById('closeSkillTipModal').addEventListener('click', closeSkillTipModal);
+document.getElementById('skillTipModal').addEventListener('click', function(e) {
+    if (e.target === this) closeSkillTipModal();
+});
+
 closeBtn.addEventListener('click', () => {
     notificationsPanel.classList.remove('open');
     openBtn.style.display = 'block'; // Show bell when sidebar closes

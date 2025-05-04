@@ -36,6 +36,96 @@ body {
     align-items: flex-start;
 }
 
+.dashboard-section.skill-insights-section {
+    background: #faf8fd;
+    border-radius: 24px;
+    box-shadow: 0 2px 12px rgba(93,63,211,0.05);
+    padding: 20px 10px 18px 10px;
+    margin-bottom: 36px;
+    min-width: 0;
+    max-width: 650px;
+    width: 100%;
+    min-height: 598px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.dashboard-section.skill-improvement-section {
+    background: #faf8fd;
+    border-radius: 24px;
+    box-shadow: 0 2px 12px rgba(93,63,211,0.05);
+    padding: 20px 10px 18px 10px;
+    max-width: 650px;
+    width: 100%;
+    min-width: 320px;
+    min-height: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+}
+
+.skill-insights-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 320px;
+    padding: 18px 0 18px 0;
+}
+
+.skill-radar-chart-container {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 59px 67px;
+}
+
+
+.skill-radar-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 8px rgba(93,63,211,0.06);
+    padding: 59px 67px;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    overflow-x: auto;
+}
+
+.skill-radar-chart-container canvas {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    max-height: 400px;
+    display: block;
+}
+
+
+
+@media (max-width: 600px) {
+    .dashboard-section.skill-insights-section {
+        padding: 18px 2vw 16px 2vw;
+    }
+    .skill-insights-grid {
+        min-height: 260px;
+        padding: 16px 0 16px 0;
+    }
+    .skill-radar-chart-container {
+        max-width: 98vw;
+        padding: 12px 0;
+    }
+}
+
 .progress-section {
     grid-column: 1 / 2;
 }
@@ -62,6 +152,60 @@ body {
     font-size: 1.08rem;
     font-weight: 600;
     color: #3d2a6d;
+}
+
+.skill-improvement-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(26,9,62,0.04);
+    padding: 13px 18px;
+    font-size: 1rem;
+    margin-bottom: 24px;
+    min-height: 48px;
+}
+.skill-improvement-row span {
+    flex: none;
+    margin-right: 0;
+    margin-bottom: 8px;
+    text-align: center;
+    width: 100%;
+}
+.skill-improvement-row .skill-improve-btn {
+    margin-left: 0;
+    margin-top: 14px;
+    align-self: center;
+    flex-shrink: 0;
+    min-width: 120px;
+}
+
+.skill-breakdown-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: #faf8fd;
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(26,9,62,0.04);
+    padding: 13px 18px;
+    margin-bottom: 18px;
+    line-height: 1.8;
+}
+.skill-breakdown-row > span {
+    margin-right: 12px;
+}
+.skill-breakdown-row .skill-improvement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 28px;
+} 
+.skill-breakdown-row .skill-improve-btn {
+    margin-left: auto;
+}
+.skill-breakdown-row:last-child {
+    margin-bottom: 0;
 }
 
 .task-summary-card {
@@ -441,6 +585,9 @@ body {
 }
 
 .dashboard-section h2 {
+    text-align: center;
+    width: 100%;
+}
     font-size: 1.45rem;
     font-weight: 700;
     color: #1a093e;
@@ -484,7 +631,7 @@ body {
     color: #1a093e;
 }
 /* --- Task Modal Popup --- */
-#taskModal {
+#taskModal, #skillTipModal {
     display: none;
     position: fixed;
     z-index: 9999;
@@ -496,7 +643,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-.task-modal-content {
+.task-modal-content, #skillTipModal .task-modal-content {
     background: #fff;
     border-radius: 16px;
     padding: 32px 28px 22px 28px;
@@ -509,7 +656,7 @@ body {
     gap: 15px;
     position: relative;
 }
-.task-modal-close {
+.task-modal-close, #skillTipModal .task-modal-close {
     position: absolute;
     top: 12px;
     right: 16px;
@@ -521,17 +668,17 @@ body {
     font-weight: 700;
     transition: color 0.18s;
 }
-.task-modal-close:hover {
+.task-modal-close:hover, #skillTipModal .task-modal-close:hover {
     color: #e74c3c;
 }
-.task-modal-details {
+.task-modal-details, #skillTipModal .task-modal-details {
     display: flex;
     flex-direction: column;
     gap: 7px;
     font-size: 1.05rem;
     color: #1a093e;
 }
-#taskModalTitle {
+#taskModalTitle, #skillTipModalTitle {
     color: #6c47c7;
     font-size: 1.22rem;
     font-weight: 700;
@@ -740,26 +887,6 @@ body {
     z-index: 2;
 }
 
-/* --- Task Modal Popup --- */
-#taskModal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(26,9,62,0.22);
-    align-items: center;
-    justify-content: center;
-}
-.task-modal-content {
-    background: #fff;
-    border-radius: 16px;
-    padding: 32px 28px 22px 28px;
-    box-shadow: 0 6px 32px rgba(26,9,62,0.13);
-    min-width: 320px;
-    max-width: 96vw;
     max-height: 84vh;
     display: flex;
     flex-direction: column;
