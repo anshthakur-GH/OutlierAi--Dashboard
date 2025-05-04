@@ -22,9 +22,13 @@ Frontend clone of Outlier AI's homepage with a custom Dashboard for the Level Up
 ⚡𝗧𝗲𝗰𝗵 𝗦𝘁𝗮𝗰𝗸 -> 
 
 🔴 HTML, CSS, JavaScript
+
 🔴 Chart.js (charts), SortableJS (table sorting)
+
 🔴 Built with Cursor, Windsurf AI IDE
+
 🔴 Frontend-only with dummy data
+
 🔴 Responsive design (CSS Grid/Flexbox)
 
 ⚡𝗔𝘂𝘁𝗵𝗼𝗿 ->
