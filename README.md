@@ -1,4 +1,4 @@
-𝗢𝘂𝘁𝗹𝗶𝗲𝗿 𝗔𝗜 𝗗𝗮𝘀𝗵𝗯𝗼𝗮𝗿𝗱 𝗖𝗹𝗼𝗻𝗲 - 𝗛𝗮𝗰𝗸𝗮𝘁𝗵𝗼𝗻 𝟮𝟬𝟮𝟱
+𝗢𝘂𝘁𝗹𝗶𝗲𝗿 𝗔𝗜 -  𝗗𝗮𝘀𝗵𝗯𝗼𝗮𝗿𝗱  
 
 Frontend clone of Outlier AI's homepage with a custom Dashboard for the Level Up Vibe Coding Hackathon 2025.
 
