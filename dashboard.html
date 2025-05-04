@@ -117,31 +117,47 @@
                 </div>
                 <!-- Quick Action Buttons -->
                 <div class="quick-action-btns">
-                    <button class="quick-action-btn" id="viewCurrentTaskBtn">View Current Task</button>
-                    <button class="quick-action-btn" id="startNextTaskBtn">Start Next Task</button>
+                    <button class="purple-button" id="viewCurrentTaskBtn">View Current Task</button>
+                    <button class="purple-button" id="startNextTaskBtn">Start Next Task</button>
                 </div>
 
             </section>
             <!-- Earnings Chart -->
             <section class="dashboard-section earnings-section">
                 <h2>Earnings (Last 7 Days)</h2>
-                <canvas id="earningsChart" width="400" height="200"></canvas>
+                <canvas id="earningsChart" width="600" height="320"></canvas>
             </section>
             <!-- Leaderboard -->
             <section class="dashboard-section leaderboard-section">
                 <h2>Leaderboard</h2>
-                <table class="leaderboard-table">
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Tasks Completed</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leaderboardBody">
-                        <!-- JS will populate -->
-                    </tbody>
-                </table>
+<div class="leaderboard-controls">
+    <input type="text" id="leaderboardSearch" class="leaderboard-search" placeholder="Search username or min points (e.g., >300)">
+    <select id="taskFilter" class="leaderboard-filter">
+        <option value="all">All Tasks</option>
+        <option value="50">50+ Tasks</option>
+        <option value="100">100+ Tasks</option>
+    </select>
+    <button class="purple-button" id="clearLeaderboardFilters">Clear Filters</button>
+    <button class="purple-button" id="exportLeaderboard">Export Leaderboard</button>
+</div>
+<table class="leaderboard-table">
+    <thead>
+        <tr>
+            <th data-sort="username">Username <span class="sort-arrow" id="sortArrow-username"></span></th>
+            <th data-sort="tasks">Tasks Completed <span class="sort-arrow" id="sortArrow-tasks"></span></th>
+            <th data-sort="points">Points <span class="sort-arrow" id="sortArrow-points"></span></th>
+            <th data-sort="rank">Rank <span class="sort-arrow" id="sortArrow-rank"></span></th>
+        </tr>
+    </thead>
+    <tbody id="leaderboardBody">
+        <!-- JS will populate -->
+    </tbody>
+</table>
+<div class="leaderboard-pagination">
+    <button id="leaderboardPrev" class="purple-button">Previous</button>
+    <span id="leaderboardPageIndicator">Page 1 of 2</span>
+    <button id="leaderboardNext" class="purple-button">Next</button>
+</div>
             </section>
         </div>
     </main>

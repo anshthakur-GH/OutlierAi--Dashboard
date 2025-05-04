@@ -44,25 +44,195 @@ new Chart(ctx, {
 });
 
 // Leaderboard Data
-const leaderboard = [
-    { username: "User1", tasks: 50, points: 500 },
-    { username: "User2", tasks: 48, points: 480 },
-    { username: "User3", tasks: 45, points: 450 },
-    { username: "User4", tasks: 42, points: 420 },
-    { username: "User5", tasks: 40, points: 400 }
+const leaderboardData = [
+    {username: "EmmaStone", tasks: 50, points: 500, rank: 1, lastActive: "2025-05-04"},
+    {username: "LiamParker", tasks: 45, points: 450, rank: 2, lastActive: "2025-05-03"},
+    {username: "SophiaChen", tasks: 40, points: 400, rank: 3, lastActive: "2025-05-02"},
+    {username: "NoahKhan", tasks: 38, points: 380, rank: 4, lastActive: "2025-05-04"},
+    {username: "AvaSingh", tasks: 35, points: 350, rank: 5, lastActive: "2025-05-01"},
+    {username: "JamesRao", tasks: 30, points: 300, rank: 6, lastActive: "2025-05-03"},
+    {username: "IsabellaGupta", tasks: 28, points: 280, rank: 7, lastActive: "2025-05-02"},
+    {username: "OliverMehta", tasks: 25, points: 250, rank: 8, lastActive: "2025-05-01"},
+    {username: "MiaPatel", tasks: 20, points: 200, rank: 9, lastActive: "2025-05-03"},
+    {username: "EthanSharma", tasks: 15, points: 150, rank: 10, lastActive: "2025-05-02"}
 ];
 
-// Populate Leaderboard Table
+// --- Leaderboard Advanced Logic ---
+(function(){
+const PAGE_SIZE = 5;
+let sortCol = 'rank';
+let sortDir = 'asc';
+let searchQuery = '';
+let taskFilter = 'all';
+let currentPage = 1;
+const currentUser = 'SophiaChen';
+
 const tbody = document.getElementById('leaderboardBody');
-leaderboard.forEach(user => {
+const searchInput = document.getElementById('leaderboardSearch');
+const filterSelect = document.getElementById('taskFilter');
+const clearBtn = document.getElementById('clearLeaderboardFilters');
+const exportBtn = document.getElementById('exportLeaderboard');
+const prevBtn = document.getElementById('leaderboardPrev');
+const nextBtn = document.getElementById('leaderboardNext');
+const pageIndicator = document.getElementById('leaderboardPageIndicator');
+const sortArrows = {
+  username: document.getElementById('sortArrow-username'),
+  tasks: document.getElementById('sortArrow-tasks'),
+  points: document.getElementById('sortArrow-points'),
+  rank: document.getElementById('sortArrow-rank')
+};
+
+function getFilteredData() {
+  let data = leaderboardData.slice();
+  // Search: username or min points
+  if (searchQuery.trim() !== '') {
+    const q = searchQuery.trim();
+    if (q.startsWith('>')) {
+      const minPoints = parseInt(q.substring(1));
+      if (!isNaN(minPoints)) {
+        data = data.filter(u => u.points > minPoints);
+      }
+    } else {
+      data = data.filter(u => u.username.toLowerCase().includes(q.toLowerCase()));
+    }
+  }
+  // Filter: task ranges
+  if (taskFilter === '50') {
+    data = data.filter(u => u.tasks >= 50);
+  } else if (taskFilter === '100') {
+    data = data.filter(u => u.tasks >= 100);
+  }
+  return data;
+}
+
+function sortData(data) {
+  return data.sort((a, b) => {
+    let res = 0;
+    if (sortCol === 'username') {
+      res = a.username.localeCompare(b.username);
+    } else {
+      res = a[sortCol] - b[sortCol];
+    }
+    return sortDir === 'asc' ? res : -res;
+  });
+}
+
+function renderTable() {
+  tbody.innerHTML = '';
+  let data = getFilteredData();
+  data = sortData(data);
+  const totalPages = Math.max(1, Math.ceil(data.length / PAGE_SIZE));
+  if (currentPage > totalPages) currentPage = totalPages;
+  const startIdx = (currentPage - 1) * PAGE_SIZE;
+  const pageData = data.slice(startIdx, startIdx + PAGE_SIZE);
+  pageData.forEach(user => {
     const row = document.createElement('tr');
+    row.className = user.username === currentUser ? 'current-user-row' : '';
+    row.setAttribute('data-username', user.username);
+    row.setAttribute('title', `Last Active: ${user.lastActive}`);
     row.innerHTML = `
-        <td>${user.username}</td>
-        <td>${user.tasks}</td>
-        <td>${user.points}</td>
+      <td>${user.username}</td>
+      <td>${user.tasks}</td>
+      <td>${user.points}</td>
+      <td>${user.rank}</td>
     `;
     tbody.appendChild(row);
+  });
+  pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = currentPage === totalPages;
+  // Tooltips
+  Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+    row.addEventListener('mouseenter', function(){
+      const tip = document.createElement('div');
+      tip.className = 'leaderboard-tooltip';
+      tip.textContent = row.title;
+      document.body.appendChild(tip);
+      const rect = row.getBoundingClientRect();
+      tip.style.left = rect.left + window.scrollX + 'px';
+      tip.style.top = rect.top + window.scrollY - 32 + 'px';
+      row._tip = tip;
+    });
+    row.addEventListener('mouseleave', function(){
+      if (row._tip) document.body.removeChild(row._tip);
+      row._tip = null;
+    });
+  });
+}
+
+function updateSortArrows() {
+  Object.keys(sortArrows).forEach(col => {
+    sortArrows[col].textContent = '';
+    if (col === sortCol) {
+      sortArrows[col].textContent = sortDir === 'asc' ? '▲' : '▼';
+    }
+  });
+}
+
+// Event Listeners
+Array.from(document.querySelectorAll('.leaderboard-table th')).forEach(th => {
+  th.addEventListener('click', function(){
+    const col = th.getAttribute('data-sort');
+    if (!col) return;
+    if (sortCol === col) {
+      sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+    } else {
+      sortCol = col;
+      sortDir = 'asc';
+    }
+    updateSortArrows();
+    renderTable();
+  });
 });
+
+searchInput.addEventListener('input', function(e){
+  searchQuery = e.target.value;
+  currentPage = 1;
+  renderTable();
+});
+
+filterSelect.addEventListener('change', function(e){
+  taskFilter = e.target.value;
+  currentPage = 1;
+  renderTable();
+});
+
+clearBtn.addEventListener('click', function(){
+  searchQuery = '';
+  taskFilter = 'all';
+  searchInput.value = '';
+  filterSelect.value = 'all';
+  currentPage = 1;
+  renderTable();
+});
+
+prevBtn.addEventListener('click', function(){
+  if (currentPage > 1) {
+    currentPage--;
+    renderTable();
+  }
+});
+nextBtn.addEventListener('click', function(){
+  const data = getFilteredData();
+  const totalPages = Math.max(1, Math.ceil(data.length / PAGE_SIZE));
+  if (currentPage < totalPages) {
+    currentPage++;
+    renderTable();
+  }
+});
+
+exportBtn.addEventListener('click', function(){
+  let data = sortData(getFilteredData());
+  let csv = 'Username,Tasks Completed,Points,Rank\n';
+  data.forEach(u => {
+    csv += `${u.username},${u.tasks},${u.points},${u.rank}\n`;
+  });
+  alert('CSV Export (sample):\n' + csv);
+});
+
+updateSortArrows();
+renderTable();
+})();
 
 // --- Task History Timeline ---
 const timelineData = [
@@ -77,11 +247,11 @@ timelineData.forEach(item => {
     const timelineItem = document.createElement('div');
     timelineItem.className = 'timeline-item';
     timelineItem.innerHTML = `
-        <div class="timeline-dot"></div>
+        <div class="timeline-dot">&#8226;</div>
         <div class="timeline-content">
-            <div class="timeline-task">${item.task}</div>
-            <div class="timeline-date">${item.date}</div>
-            <div class="timeline-points">+${item.points} pts</div>
+            <span class="timeline-task">${item.task}</span>
+            <span class="timeline-date">${item.date}</span>
+            <span class="timeline-points">+${item.points}</span>
         </div>
     `;
     timeline.appendChild(timelineItem);
