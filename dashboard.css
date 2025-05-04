@@ -67,6 +67,10 @@ body {
     flex-direction: column;
     justify-content: center;
 }
+
+.dashboard-section.skill-insights-section,
+.dashboard-section.skill-improvement-section {
+    min-height: 600px;
 }
 
 .skill-insights-grid {
@@ -95,9 +99,9 @@ body {
     background: #fff;
     border-radius: 18px;
     box-shadow: 0 2px 8px rgba(93,63,211,0.06);
-    padding: 59px 67px;
+    padding: 29px 67px;
     width: 100%;
-    max-width: 420px;
+    max-width: 389px;
     height: auto;
     overflow-x: auto;
 }
@@ -129,8 +133,91 @@ body {
 .progress-section {
     grid-column: 1 / 2;
 }
+position of Task History
+/* --- Dashboard Section Card Style Update --- */
+.dashboard-section,
+.dashboard-section.skill-insights-section,
+.dashboard-section.skill-improvement-section,
+.earnings-section,
+.progress-section {
+    background: #2a223a !important;
+    border-radius: 20px !important;
+    box-shadow: 0 4px 24px rgba(44, 34, 68, 0.12) !important;
+    color: #101010 !important;
+    /* Padding and margin remain as before for layout consistency */
+}
 
-/* --- Task Progress Dashboard Enhancements --- */
+/* Headings inside dashboard sections */
+.dashboard-section h2,
+.earnings-section h2 {
+    color: #fff !important;
+    text-align: left;
+}
+
+/* Update text color for labels and values inside cards */
+.task-details,
+.task-number,
+.task-name,
+.task-summary-label,
+.task-summary-value,
+.milestone-info,
+.milestone-label,
+.milestone-main,
+.milestone-reward,
+.milestone-progress-label,
+.progress-label {
+    color: #fff !important;
+}
+
+/* Task summary card and milestone tracker backgrounds */
+.task-summary-card,
+.milestone-tracker,
+.task-progress-bar-card {
+    background: rgba(255,255,255,0.06) !important;
+    color: #fff !important;
+    border-radius: 14px;
+    box-shadow: none;
+}
+
+/* Progress bar backgrounds */
+.milestone-progress-bar-bg,
+.progress-bar-bg {
+    background: rgba(255,255,255,0.13) !important;
+}
+
+/* Progress bar fill remains purple for accent */
+.milestone-progress-bar-fill,
+.progress-bar-fill {
+    background: linear-gradient(90deg, #6c47c7 0%, #5d3fd3 100%);
+}
+
+/* Skill improvement row and breakdown row backgrounds */
+.skill-improvement-row,
+.skill-breakdown-row {
+    background: rgba(255,255,255,0.06) !important;
+    color: #fff !important;
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+/* Recent task log card background */
+.recent-task-log-card {
+    background: rgba(255,255,255,0.06) !important;
+    color: #fff !important;
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+/* Table and input fields inside these sections */
+.dashboard-section input,
+.dashboard-section select,
+.dashboard-section textarea {
+    background: #231b3a !important;
+    color: #fff !important;
+    border: 1px solid #4a3a6d !important;
+}
+
+/* Responsive adjustments remain unchanged */
 
 .task-details {
     display: flex;
@@ -139,7 +226,7 @@ body {
     margin-bottom: 14px;
     font-size: 1.08rem;
     font-weight: 600;
-    color: #1a093e;
+    /* color now set by card style */
 }
 
 .task-number {
@@ -148,26 +235,31 @@ body {
     padding: 3px 12px;
     font-size: 1.04rem;
     font-weight: 700;
-    color: #6c47c7;
+    color: #000000 !important;
 }
 
 .task-name {
     font-size: 1.08rem;
     font-weight: 600;
-    color: #3d2a6d;
+    /* color now set by card style */
 }
 
 .skill-improvement-row {
+    width: 340px;
+    min-width: 340px;
+    max-width: 100%;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #fff;
+    background: rgba(255,255,255,0.06) !important;
+    color: #fff !important;
     border-radius: 12px;
-    box-shadow: 0 1px 6px rgba(26,9,62,0.04);
-    padding: 16px 67px;
+    box-shadow: none;
+    padding: 16px 24px;
     gap: 32px;
     font-size: 1rem;
-    margin-bottom: 24px;
+    margin-bottom: 0;
     min-height: 48px;
 }
 
@@ -208,6 +300,17 @@ body {
     flex-direction: column;
     gap: 32px;
     margin-top: 28px;
+}
+
+.skill-improvement-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    gap: 24px;
 }
 
 .skill-breakdown-row .skill-improve-btn {
@@ -343,7 +446,7 @@ body {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 1px 6px rgba(26,9,62,0.06);
-    padding: 12px 18px 14px 18px;
+    padding: 7px 12px 17px 2px;
     margin-bottom: 16px;
     display: flex;
     flex-direction: column;
@@ -437,6 +540,20 @@ body {
     flex-direction: column;
     gap: 5px;
 }
+.timeline-points {
+    flex: 1;
+    font-size: 1.02rem;
+    color: #4cff8f !important;
+    background: #2a223a !important;
+    font-weight: 600;
+    text-align: right;
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin-left: 8px;
+}
+span.timeline-points {
+    color: #4cff8f !important;
+}
 
 .quick-action-btn {
     background: #6c47c7;
@@ -481,6 +598,82 @@ body {
 .leaderboard-section {
     grid-column: 1 / 3;
     margin-top: 0;
+    background: #2a223a;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(44, 34, 68, 0.12);
+    padding: 32px 24px 32px 24px;
+    color: #fff;
+}
+
+.leaderboard-section h2 {
+    color: #fff;
+    visibility: visible;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    background: transparent;
+    border-radius: 16px;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 1.04rem;
+    color: #fff;
+    background: transparent;
+    border: none;
+}
+
+.leaderboard-table th {
+    background: rgba(255,255,255,0.06);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.leaderboard-table tr:nth-child(even) {
+    background: rgba(255,255,255,0.04);
+}
+
+.leaderboard-table tr {
+    transition: background 0.15s;
+}
+
+.leaderboard-table tr:hover {
+    background: rgba(255,255,255,0.10);
+    cursor: pointer;
+}
+
+.current-user-row {
+    background: linear-gradient(90deg, #3a2a4d 0%, #2a223a 100%) !important;
+    font-weight: 700;
+    position: relative;
+}
+
+.leaderboard-controls,
+.leaderboard-pagination {
+    background: transparent;
+}
+
+.leaderboard-search,
+.leaderboard-filter {
+    background: #231b3a;
+    color: #fff;
+    border: 1px solid #4a3a6d;
+}
+
+.sort-arrow {
+    color: #b3aaff;
+}
+
+.leaderboard-tooltip {
+    background: #5d3fd3;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(44, 34, 68, 0.16);
 }
 
 .progress-bar-container {
@@ -645,7 +838,7 @@ body {
     width: 100%;
     font-size: 1.45rem;
     font-weight: 700;
-    color: #1a093e;
+    color: #ffffff;
     margin-bottom: 20px;
     letter-spacing: 0.01em;
 }
@@ -653,43 +846,69 @@ body {
 /* --- Metrics Cards --- */
 
 .metrics-cards-section {
-    margin-bottom: 36px;
-    width: 100%;
+    margin-bottom: 32px;
 }
-
 .metrics-cards-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
+    gap: 32px;
+    margin-bottom: 0;
 }
-
 .metrics-card {
-    background: #fff;
+    background: #2a223a;
     border-radius: 20px;
-    box-shadow: 0 2px 12px rgba(26,9,62,0.08);
-    padding: 22px 18px 18px 18px;
+    box-shadow: 0 4px 24px rgba(44, 34, 68, 0.12);
+    padding: 32px 24px 32px 24px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    min-width: 0;
+    min-height: 180px;
+    transition: box-shadow 0.2s;
+    color: #fff;
+    position: relative;
 }
-
+.metrics-card:hover {
+    box-shadow: 0 8px 32px rgba(44, 34, 68, 0.18);
+}
 .metrics-icon {
-    font-size: 2.1rem;
-    margin-bottom: 12px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(44, 34, 68, 0.08);
 }
-
 .metrics-label {
-    font-size: 1.05rem;
-    color: #7d6e9c;
+    font-size: 1.15rem;
     font-weight: 600;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
+    color: #fff;
 }
-
 .metrics-value {
-    font-size: 1.45rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: #1a093e;
+    color: #fff;
+    margin-top: auto;
+}
+@media (max-width: 900px) {
+    .metrics-cards-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+@media (max-width: 600px) {
+    .metrics-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .metrics-card {
+        padding: 20px 14px;
+        min-height: 120px;
+    }
 }
 
 /* --- Task Modal Popup --- */
@@ -770,6 +989,7 @@ body {
     font-size: 1.25rem;
     color: #1a093e;
     font-weight: 700;
+    text-align: center;
 }
 .timeline {
     border-left: 3px solid #6c47c7;
@@ -805,7 +1025,7 @@ body {
     content: none;
 }
 .timeline-content {
-    background: #faf8fd;
+    background: #2a223a !important;
     border-radius: 14px;
     box-shadow: 0 2px 8px rgba(26,9,62,0.04);
     padding: 12px 18px;
@@ -815,23 +1035,29 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 0;
+    color: #fff !important;
+}
+.timeline-task,
+.timeline-date {
+    color: #fff !important;
 }
 .timeline-task {
     flex: 1;
     font-weight: 650;
-    color: #1a093e;
     text-align: left;
 }
 .timeline-date {
     flex: 1;
     font-size: 0.97rem;
-    color: #7d6e9c;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .timeline-points {
     flex: 1;
     font-size: 1.02rem;
-    color: #2ecc40;
+    color: #4cff8f !important;
     background: rgba(46,204,64,0.08);
     font-weight: 600;
     text-align: right;
@@ -839,6 +1065,10 @@ body {
     padding: 2px 8px;
     margin-left: 8px;
 }
+span.timeline-points {
+    color: #4cff8f !important;
+}
+
 
 /* --- Notifications Panel --- */
 .notifications-panel {
@@ -951,12 +1181,7 @@ body {
     z-index: 2;
 }
 
-    max-height: 84vh;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    position: relative;
-}
+
 .task-modal-close {
     position: absolute;
     top: 12px;

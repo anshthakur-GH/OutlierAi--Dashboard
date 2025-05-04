@@ -4,8 +4,8 @@ const earningsLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 // Render Earnings Chart
 const ctx = document.getElementById('earningsChart').getContext('2d');
-new Chart(ctx, {
-    type: 'bar',
+const earningsChart = new Chart(ctx, {
+    type: 'line', // or 'bar', etc.
     data: {
         labels: earningsLabels,
         datasets: [{
@@ -35,10 +35,32 @@ new Chart(ctx, {
     options: {
         responsive: true,
         plugins: {
-            legend: { display: false }
+            legend: {
+                labels: {
+                    color: '#fff' // Set legend label color to white
+                }
+            },
+            title: {
+                color: '#fff' // If you use a chart title
+            }
         },
         scales: {
-            y: { beginAtZero: true }
+            x: {
+                ticks: {
+                    color: '#fff' // X axis label color
+                },
+                grid: {
+                    color: 'rgba(255,255,255,0.15)' // Optional: lighter grid lines
+                }
+            },
+            y: {
+                ticks: {
+                    color: '#fff' // Y axis label color
+                },
+                grid: {
+                    color: 'rgba(255,255,255,0.15)' // Optional: lighter grid lines
+                }
+            }
         }
     }
 });
